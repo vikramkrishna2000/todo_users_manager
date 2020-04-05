@@ -90,6 +90,14 @@ body {
     line-height: 19px;
     margin-right: 10px;
   }
+
+  .TodoItem-textCompleted {
+    text-decoration: line-through;
+    font-size: 14px;
+    line-height: 19px;
+    margin-right: 10px;
+  }
+
   
   .TodoItem-dueDate {
     font-size: 10px;
