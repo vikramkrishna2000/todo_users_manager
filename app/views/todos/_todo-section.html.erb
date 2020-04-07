@@ -8,8 +8,18 @@
         <% todos.each do |todo| %>  
             <% if !(todo.completed) || !(todo.due_date < Date.today) %>        
                 <li class="TodoItem">
-                    <input class="TodoItem-checkbox" type="checkbox" <%= todo.completed ? "checked" : "" %> />
-                    <p class="TodoItem-text<%= todo.completed ? "Completed" : "" %>"><%= todo.todo_text %></p>
+                    <%= form_with(url: "/todos/#{todo.id}", method: "put") do %>
+                        <input 
+                            class="TodoItem-checkbox" 
+                            name="completed" 
+                            type="checkbox" <%= todo.completed ? "checked" : "" %> 
+                            onclick="this.form.submit()"
+                        />
+                    <% end %>
+                    
+                    <p class="TodoItem-text<%= todo.completed ? "Completed" : "" %>">
+                        <%= todo.todo_text %>
+                    </p>
 
                     <% if show_due_date %>
                         <p class="TodoItem-dueDate"><%= todo.due_date.to_s(:short) %></p>
