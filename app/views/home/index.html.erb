@@ -1,4 +1,9 @@
-<h1> Welcome to my todos homepage </h1>
+<h1 class="Home-title"> Welcome to my todos homepage </h1>
 
+<h3 class="Home-authenticate">
+    If you a new user, <%= link_to "sign up here", new_user_path %> 
+</h3>
 
-<p>If you a new user,sign up here</p>
+<h3 class="Home-authenticate">
+    If you are an existing user, <%= link_to "sign-in here", new_sessions_path %>
+</h3>
