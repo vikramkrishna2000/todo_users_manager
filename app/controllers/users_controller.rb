@@ -1,5 +1,21 @@
-class UsersController < ApplicationController 
-    skip_before_action :verify_authenticity_token
+class UsersController < ApplicationController
+    def new
+        render "users/new"
+    end
+
+    def create
+        User.create!(
+            first_name: params[:first_name],
+            last_name: params[:last_name],
+            email: params[:email],
+            password: params[:password],
+        )
+        redirect_to "/"
+    end
+end
+
+
+'    skip_before_action :verify_authenticity_token
     def index
         render plain: "User Details\n"+User.all.map {|user| user.to_display_content}.join("\n")
     end
@@ -19,4 +35,4 @@ class UsersController < ApplicationController
         identified_user = User.where( "email = ? AND password = ?", email, password ).to_a
         render plain: !identifier_user.empty?
     end
-end
+end'
