@@ -4,7 +4,7 @@
     <%= form_with url: users_path do |form| %>
         <div class="Form-section" >
             <p class="Form-label" >First name: </p>
-            <%= form.text_field :first_name, class: "Form-input" %>
+            <%= form.text_field :first_name, class: "Form-input", autofocus: true %>
             <% flash.each do |type, errors| %>
                 <div class="Form-flashMessage">
                   <%= errors["first_name"].to_a.each { |message| message }.join %>
