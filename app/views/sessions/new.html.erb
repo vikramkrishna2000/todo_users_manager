@@ -1,4 +1,6 @@
 <p class="NewUsers-title">Sign-in!</p>
+<hr>
+
 <section class="UserNew">
     <%= form_with url: sessions_path do |form| %>
         <div class="Form-section">
@@ -9,7 +11,10 @@
             <p class="Forminput-label">Password: </p>
             <%= form.password_field :password, class: "Form-input" %>
         </div>
+        <div class="Form-flashMessage">
+            <%= flash[:error] %>
+        </div>
         <div class="Form-section">
-            <%= form.submit "Sign-in!", class: "Form-submit" %>
+            <%= form.submit :"Sign-in!", class: "Form-submit" %>
     <% end %>
 </section>

@@ -1,23 +1,44 @@
 <p class="NewUsers-title">Welcome new user!</p>
-<section class="UserNew">
+
+<section class="NewUsers-details">
     <%= form_with url: users_path do |form| %>
-        <div class="Form-section">
-            <p class="Forminput-label">First name: </p>
+        <div class="Form-section" >
+            <p class="Form-label" >First name: </p>
             <%= form.text_field :first_name, class: "Form-input" %>
+            <% flash.each do |type, errors| %>
+                <div class="Form-flashMessage">
+                  <%= errors["first_name"].to_a.each { |message| message }.join %>
+                </div>
+            <% end %>
         </div>
-        <div class="Form-section">
-            <p class="Forminput-label">Last name: </p>
+
+        <div class="Form-section" >
+            <p class="Form-label" >Last name: </p>
             <%= form.text_field :last_name, class: "Form-input" %>
         </div>
-        <div class="Form-section">
-            <p class="Forminput-label">Email: </p>
-            <%= form.email_field :email, class: "Form-input" %>
+
+        <div class="Form-section" >
+            <p class="Form-label" >Email-ID: </p>
+            <%= form.email_field :email, class: "Form-input"  %>
+            <% flash.each do |type, errors| %>
+                <div class="Form-flashMessage">
+                  <%= errors["email"].to_a.each { |message| message }.join %>
+                </div>
+            <% end %>           
         </div>
-        <div class="Form-section">
-            <p class="Forminput-label">Password: </p>
-            <%= form.password_field :password, class: "Form-input" %>
+
+        <div class="Form-section" >
+            <p class="Form-label" >Password: </p>
+            <%= form.password_field :password, class: "Form-input"  %>
+             <% flash.each do |type, errors| %>
+                <div class="Form-flashMessage">
+                  <%= errors["password"].to_a.each { |message| message }.join %>
+                </div>
+            <% end %>          
         </div>
-        <div class="Form-section">
-            <%= form.submit "Sign-up!", class: "Form-submit" %>
+
+        <div class="Form-section" >
+            <%= form.submit :"Sign up!", class: "Form-submit" %>
+        </div>
     <% end %>
 </section>

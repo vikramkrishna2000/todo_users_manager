@@ -1,6 +1,73 @@
 class UsersController < ApplicationController
+
+    skip_before_action :ensure_user_logged_in
+
+    def new
+      render "new"
+    end
+  
+    def index
+      render plain: User.all.map { |user| user.to_pleasant_string }.join("\n")
+    end
+  
+    def show
+      id = params[:id]
+      user = User.find(id)
+      render plain: user.to_pleasant_string
+    end
+  
+    def create
+      user = User.new(
+        first_name: params[:first_name],
+        last_name: params[:last_name],
+        email: params[:email],
+        password: params[:password],
+      )
+      if user.valid?
+        user.save
+        session[:current_user_id] = user.id
+        redirect_to "/"
+      else
+        redirect_to new_user_path
+        flash[:errors] = user.errors
+      end
+    end
+  
+    def login
+      render plain: User.where(email: params[:email], password: params[:password]).exists?
+    end
+end
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    ' skip_before_action :ensure_user_logged_in
+   
     def new
         render "users/new"
+    end
+
+    def index
+        render plain: User.all.map { |user| user.to_pleasant_string }.join("\n")
     end
 
     def create
@@ -12,27 +79,6 @@ class UsersController < ApplicationController
         )
         redirect_to "/"
     end
-end
-
-
-'    skip_before_action :verify_authenticity_token
-    def index
-        render plain: "User Details\n"+User.all.map {|user| user.to_display_content}.join("\n")
-    end
-
-    def create
-        name = params[:name]
-        email = params[:email]
-        password = params[:password]
-        new_user = User.create!(name: name,email: email,password: password)
-        confirmation_text = "User is created with id #{new_user.id}"
-        render plain: confirmation_text
-    end
-    
-    def login
-        email = params[:email]
-        password = params[:password]
-        identified_user = User.where( "email = ? AND password = ?", email, password ).to_a
-        render plain: !identifier_user.empty?
-    end
 end'
+
+

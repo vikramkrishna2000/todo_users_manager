@@ -1,4 +1,66 @@
-<article>
+<html>
+    <body>
+        <main class="TodoPageMain">
+            <article>
+                <h1 class="TodoPage-title">My Todolist</h1>
+                <%= form_with(url: "/todos", method: "post", class: "AddTodo") do %>
+                    <%= text_field(nil, :todo_text, placeholder: "What's next?", class: "AddTodo-text") %>
+                    <%= date_field(nil, :due_date, class: "AddTodo-date",) %>
+                    <%= submit_tag(:Add, class: "AddTodo-button") %>
+                <% end %>
+                <% if flash[:error] %>
+                    <div class="Form-flashMessage">
+                        <%= flash[:error] %>
+                    </div>
+                <% end %>
+                <%= render partial: "todo-section", locals: {
+                             section_title: "Overdue",
+                             todos: @todos.overdue,
+                             show_due_date: true,
+                           } %>
+                <%= render partial: "todo-section", locals: {
+                             section_title: "Due Today",
+                             todos: @todos.due_today,
+                             show_due_date: false,
+                           } %>
+                <%= render partial: "todo-section", locals: {
+                             section_title: "Due Later",
+                             todos: @todos.due_later,
+                             show_due_date: true,
+                           } %>
+            </article>
+        </main>
+    </body>
+</html> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'<article>
 
     <h1 class="TodoPageTitle">My Todo-list</h1>
     <%= form_with(url: "/todos", method: "post", class: "AddTodo") do %>
@@ -23,4 +85,4 @@
         show_due_date: true
     } %>
   
-</article>
+</article>'

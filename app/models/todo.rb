@@ -1,8 +1,10 @@
 
 class Todo < ActiveRecord::Base
     belongs_to :user
-    # table called "users"
-    # todos table will contain "user_id"
+    validates_presence_of :todo_text
+    validates_presence_of :due_date
+    validates :todo_text, length: { minimum: 2 }
+
 
     def due_today?
       due_date == Date.today
